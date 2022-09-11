@@ -335,26 +335,33 @@ input[type="checkbox"]:checked::before {
 }
 
 .results-section {
+    height: 100%;
+    width: 100%;
+}
+
+.results-display {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(8, 1fr);
     grid-gap: 15px;
 
     overflow-y: auto;
     overflow-x: hidden;
     width: auto;
-    padding: 20px;
+
+    height: 100%;
 }
 
-.results-section > img {
+.results-display > .img-wrapper > .img-gen {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.results-section > img {
+/* .results-display > div {
     width: 100% !important;
     height: auto !important;
-}
+} */
 
 .progress-row {
     display: flex;

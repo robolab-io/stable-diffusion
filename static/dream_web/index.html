@@ -19,12 +19,13 @@
 
         <form id="generate-form" method="post" action="#">
         <div class="text-to-image-form" id="txt2img">
-                <fieldset id="fieldset-search">
-                  <input type="text" v-model="prompt" id="prompt" name="prompt">
+
+                <fieldset class="prompting-input" id="fieldset-search">
+                  <textarea class="prompting-text-input" type="text" v-model="prompt" id="prompt" name="prompt"></textarea>
                   <button type="submit" id="submit" value="Generate" @click="generateSubmit">Generate</button>
                 </fieldset>
+
                 <fieldset class="options" id="fieldset-config">
-                  <div style="padding: 0.5rem;"></div>
 
                   <div class="section-header">
                     Text to Image Options 
@@ -124,21 +125,34 @@
                     <input type="checkbox" id="fit" name="fit" v-model="img2img_fitdimension">
                   </div>
 
+                  <div style="padding: 1rem;"></div>
+
+                  <div class="section-header">Upscaling Options</div>
+
+                  <div id="gfpgan">
+
+                    <div class="config-row">
+                      <label class="input-label" title="Strength of the gfpgan (face fixing) algorithm." for="gfpgan_strength">GPFGAN Strength (0 to disable)</label>
+                      <input class="number-input" value="0.8" min="0" max="1" type="number" id="gfpgan_strength" name="gfpgan_strength" step="0.05">
+                    </div>
+
+                    <div class="config-row">
+
+                      <label class="input-label" title="Upscaling to perform using ESRGAN." for="upscale_level">Upscaling Level</label>
+                      <select class="select-input" id="upscale_level" name="upscale_level" value="">
+                        <option value="" selected>None</option>
+                        <option value="2">2x</option>
+                        <option value="4">4x</option>
+                      </select>
+
+                      <label class="input-label" title="Strength of the esrgan (upscaling) algorithm." for="upscale_strength">Upscale Strength</label>
+                      <input class="number-input" value="0.75" min="0" max="1" type="number" id="upscale_strength" name="upscale_strength" step="0.05">
+                    </div>
+
+                  </div>
+
+                </div>
               </div>
-        </div>
-    
-          <div id="gfpgan">
-            <label title="Strength of the gfpgan (face fixing) algorithm." for="gfpgan_strength">GPFGAN Strength (0 to disable):</label>
-            <input value="0.8" min="0" max="1" type="number" id="gfpgan_strength" name="gfpgan_strength" step="0.05">
-            <label title="Upscaling to perform using ESRGAN." for="upscale_level">Upscaling Level</label>
-            <select id="upscale_level" name="upscale_level" value="">
-              <option value="" selected>None</option>
-              <option value="2">2x</option>
-              <option value="4">4x</option>
-            </select>
-            <label title="Strength of the esrgan (upscaling) algorithm." for="upscale_strength">Upscale Strength:</label>
-            <input value="0.75" min="0" max="1" type="number" id="upscale_strength" name="upscale_strength" step="0.05">
-          </div>
           </fieldset>
         </form>
   
@@ -158,12 +172,10 @@
       </main>
 
       <div class="results-section" id="results">
-        <div id="no-results-message">
-          Nothing here yet!
           <div class="results-display">
             <div class="img-wrapper" v-for="x in results">
               <img class="img-gen" :src="x.src" />
-            </div>"
+            </div>
           </div>
         </div>
       </div>
