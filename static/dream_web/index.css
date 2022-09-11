@@ -412,4 +412,15 @@ input[type="checkbox"]:checked::before {
 .initialImg {
     width: 100px;
     height: auto;
+
+    border-radius: 5px;
+}
+
+.file-selector::file-selector-button {
+    background-color: #275EFE;
+    border-radius: 36px;
+    color: #f4f5f7;
+    outline: 0;
+    border: 0;
+    padding: 5px 10px 5px 10px;
 }

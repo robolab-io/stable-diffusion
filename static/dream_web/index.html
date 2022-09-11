@@ -111,7 +111,7 @@
                   
                   <div class="config-row">
                     <label class="input-label" title="Upload an image to use img2img" for="initimg">Initial Image</label>
-                    <input type="file" @change="handleFileChange($event, index)" id="initimg" name="initimg" accept=".jpg, .jpeg, .png">
+                    <input class="file-selector" type="file" @change="handleFileChange($event, index)" id="initimg" name="initimg" accept=".jpg, .jpeg, .png">
                   </div>
                   <img class="initialImg" :src="initialImgUrl"/>
 
