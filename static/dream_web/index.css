@@ -351,6 +351,8 @@ input[type="checkbox"]:checked::before {
 
     overflow-y: auto;
     overflow-x: hidden;
+
+    padding: 150px;
 }
 
 .results-display > .img-wrapper > .img-gen {
@@ -425,4 +427,25 @@ input[type="checkbox"]:checked::before {
     outline: 0;
     border: 0;
     padding: 5px 10px 5px 10px;
+}
+
+.awesome-control-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px 10px 20px;
+    background-color: #222329;
+    border-radius: 36px;
+    height: 36px;
+    position: fixed;
+    bottom: 0;
+}
+
+.control-button, .control-button > svg {
+    width: 2rem;
+    height: 2rem;
+    fill: #9fa0a5;
+    stroke: #9fa0a5;
 }
