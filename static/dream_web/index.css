@@ -1,22 +1,62 @@
+@import url(https://fonts.bunny.net/css?family=inter:100,200,300,400,500,600,700,800,900);
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
 * {
-    font-family: 'Arial';
+    font-family: 'Inter', sans-serif;
 }
-#header {
-    text-decoration: dotted underline;
+
+*:focus {
+    outline: none;
 }
+
 #search {
-    margin-top: 20vh;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1024px;
-    text-align: center;
 }
 fieldset {
     border: none;
 }
-div {
-    padding: 10px 10px 10px 10px;
-}
+
 #fieldset-search {
     display: flex;
 }
@@ -30,24 +70,14 @@ div {
 
     border-radius: 20px 0px 0px 20px;
     padding: 5px 10px 5px 10px;
-    border: 1px solid black;
     border-right: none;
     outline: none;
 }
 #submit {
     border-radius: 0px 20px 20px 0px;
     padding: 5px 10px 5px 10px;
-    border: 1px solid black;
 }
-#reset-all {
-    background-color: pink;
-}
-#results {
-    text-align: center;
-//    max-width: 1024px;
-    margin: auto;
-    padding-top: 10px;
-}
+
 #results img {
     cursor: pointer;
     height: 30vh;
@@ -75,23 +105,252 @@ label {
 #progress-image {
     width: 30vh;
     height: 30vh;
+    display: none;
 }
-#cancel-button {
-    cursor: pointer;
-    color: red;
-}
+
 #txt2img {
-    background-color: #DCDCDC;
+    background-color: #222329;
 }
-#img2img {
-    background-color: #F5F5F5;
+
+#prompt {
+    background-color: #17181c;
+    border: 0;
+    color: #9fa0a5;
+    height: auto;
 }
-#gfpgan {
-    background-color: #DCDCDC;
+
+#submit {
+    background-color: #275EFE;
+    border: 2px solid #17181c;
+    color: #f4f5f7;
 }
-#progress-section {
-    background-color: #F5F5F5;
+
+.danger-button {
+    border-radius: 36px;
+
+    background-color: #fe4027;
+    border: 2px solid #17181c;
+    color: #f4f5f7;
+
+    padding: 5px 10px 5px 10px;
 }
-#about {
-    background-color: #DCDCDC;
+
+html, body {
+    height: 100%;
+    width: 100%;
+
+    overflow-x: hidden;
+}
+
+html, body {
+    background-color: #111216;
+}
+
+html, body {
+    color: #9fa0a5
+}
+
+.number-input, .select-input {
+    border: 2px solid #17181c;
+}
+
+.number-input {
+    background-color: #17181c;
+    border-radius: 8px;
+    padding: 8px;
+    color: #9fa0a5;
+}
+
+.number-input:focus, .number-input:active {
+    border: 2px solid #275EFE;
+    color: #f4f5f7;
+}
+
+.select-input {
+    background-color: #17181c;
+    border-radius: 8px;
+    padding: 8px;
+    color: #9fa0a5;
+}
+
+.select-input:focus, .select-input:active {
+    border: 2px solid #275EFE;
+    color: #f4f5f7;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+      margin: 0; 
+}
+
+input[type=number] { 
+    -moz-appearance: textfield;
+    appearance: textfield;
+    margin: 0; 
+}
+
+#prompt {
+    font-family: ui-monospace,"Cascadia Mono","Segoe UI Mono","Liberation Mono",Menlo,Monaco,Consolas,monospace !important;
+}
+
+#txt2img {
+    border-radius: 20px;
+}
+
+input[type=checkbox] {
+    -webkit-appearance: none;
+    appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+    background-color: #111216;
+    border-radius: 8px;
+
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+    
+    outline: 0;
+    border: 0;
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    transform: scale(0);
+    transition: 70ms transform ease-in-out;
+    box-shadow: inset 1em 1em #275EFE;
+    border-radius: 2px;
+}
+
+input[type="checkbox"]:checked::before {
+    transform: scale(1);
+}
+
+.options {
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+
+    width: calc(100% - 40px);
+    max-width: 1024px;
+    flex-shrink: 1;
+    margin: 20px;
+}
+
+.layout {
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.text-to-image-form {
+    padding: 20px;
+}
+
+.header {
+    font-size: 24px;
+}
+
+.config-row {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+}
+
+.input-label {
+    text-transform: uppercase;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: #f4f5f7;
+}
+
+.icon-button {
+    background-color: #275EFE;
+    border: 2px solid #17181c;
+    color: #f4f5f7;
+}
+
+.reset-seed-button {
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 8px;
+}
+
+.section-header {
+    display: flex;
+    flex-direction: row;
+    font-weight: 700;
+    gap: 8px;
+}
+
+.progress-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.progress-bar {
+
+}
+
+.results-section {
+    width: calc(100% - 40px);
+    max-width: 1024px;
+
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 15px;
+}
+
+.results-section > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.results-section > img {
+    width: 100% !important;
+    height: auto !important;
+}
+
+.progress-row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.progress-cancel {
+    border-radius: 36px;
+
+    background-color: #fe4027;
+    border: 2px solid #17181c;
+    color: #f4f5f7;
+
+    padding: 5px 10px 5px 10px;
+    cursor: default;
+    user-select: none;
 }
