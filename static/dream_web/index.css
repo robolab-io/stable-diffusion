@@ -66,7 +66,7 @@ fieldset {
     display: none;
 }
 #submit {
-    border-radius: 0px 20px 20px 0px;
+    border-radius: 0px 8px 8px 0px;
     padding: 5px 10px 5px 10px;
 }
 
@@ -158,7 +158,7 @@ html, body {
 .prompting-text-input {
     flex-grow: 1;
 
-    border-radius: 20px 0px 0px 20px;
+    border-radius: 8px 0px 0px 8px;
     padding: 5px 10px 5px 10px;
     border-right: none;
     outline: none;
@@ -238,8 +238,10 @@ input[type="checkbox"]:checked::before {
     flex-direction: column;
 
     background-color: #222329;
-    border-radius: 2rem;
+    border-radius: 1rem;
     padding: 1rem;
+
+    margin-bottom: 64px;
 }
 
 .main {
@@ -247,7 +249,7 @@ input[type="checkbox"]:checked::before {
     flex-direction: column;
 
     width: calc(100% - 40px);
-    max-width: 876px;
+    max-width: 726px;
     flex-shrink: 1;
     margin: 20px;
 }
@@ -392,10 +394,8 @@ input[type="checkbox"]:checked::before {
 .prompting-input {
     background-color: #222329;
     padding: 1rem;
-    border-radius: 2rem;
+    border-radius: 1rem;
 
-    position: sticky;
-    top: 12px;
     z-index: 9998;
 }
 
@@ -434,13 +434,16 @@ input[type="checkbox"]:checked::before {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    gap: 20px;
     padding: 10px 20px 10px 20px;
-    background-color: #222329;
-    border-radius: 36px;
+    background-color: #111216;
     height: 36px;
     position: fixed;
+    left: 0;
+    right: 0;
     bottom: 0;
+
+    z-index: 9999;
+    border-top: 2px solid #27282e;
 }
 
 .control-button, .control-button > svg {
@@ -448,4 +451,12 @@ input[type="checkbox"]:checked::before {
     height: 2rem;
     fill: #9fa0a5;
     stroke: #9fa0a5;
+}
+
+.control-button {
+    padding: 1rem;
+}
+
+.control-button:hover {
+    background-color: #222329;
 }
