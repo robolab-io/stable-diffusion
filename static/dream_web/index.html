@@ -7,127 +7,125 @@
 
     <link rel="stylesheet" href="static/dream_web/index.css">
     <script src="config.js"></script>
-    <script src="static/dream_web/index.js"></script>
+    <!-- <script src="static/dream_web/index.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   </head>
   <body>
-    <div class="layout">
+    <div id="app" class="layout">
       <main class="main" id="search">
         <h2 class="header" id="header">Stable Diffusion Dream Server</h2>
   
         <div style="padding: 1rem;"></div>
 
-        <form class="generate-form" id="generate-form" method="post" action="#">
-          <div class="text-to-image-form" id="txt2img">
-            <fieldset class="prompting-input" id="fieldset-search">
-              <textarea class="prompting-text-input" placeholder="Dream..." type="text" id="prompt" name="prompt"></textarea>
-              <input type="submit" id="submit" value="Generate">
-            </fieldset>
+        <form id="generate-form" method="post" action="#">
+        <div class="text-to-image-form" id="txt2img">
+                <fieldset id="fieldset-search">
+                  <input type="text" v-model="prompt" id="prompt" name="prompt">
+                  <button type="submit" id="submit" value="Generate" @click="generateSubmit">Generate</button>
+                </fieldset>
+                <fieldset class="options" id="fieldset-config">
+                  <div style="padding: 0.5rem;"></div>
 
-            <fieldset class="options" id="fieldset-config">
-              <div class="text-to-image-options">
-                <div class="section-header">
-                  Text to Image Options 
-                  <div class="config-row">
-                    <button class="danger-button" type="button" id="reset-all">Reset</button>
+                  <div class="section-header">
+                    Text to Image Options 
+                    <div class="config-row">
+                      <button class="danger-button" type="button" id="reset-all">Reset</button>
+                    </div>
                   </div>
-                </div>
-  
-                <div style="padding: 0.5rem;"></div>
-  
-                <div class="config-row">
-                  <label class="input-label" for="iterations">Images to Generate</label>
-                  <input class="number-input" value="1" type="number" id="iterations" name="iterations" size="4">
 
-                  <label class="input-label" title="Set to multiple of 64" for="width">Width</label>
-                  <select class="select-input" id="width" name="width" value="512">
-                    <option value="64">64</option> <option value="128">128</option>
-                    <option value="192">192</option> <option value="256">256</option>
-                    <option value="320">320</option> <option value="384">384</option>
-                    <option value="448">448</option> <option value="512" selected>512</option>
-                    <option value="576">576</option> <option value="640">640</option>
-                    <option value="704">704</option> <option value="768">768</option>
-                    <option value="832">832</option> <option value="896">896</option>
-                    <option value="960">960</option> <option value="1024">1024</option>
-                  </select>
-                  <label class="input-label" title="Set to multiple of 64" for="height">Height</label>
-                  <select class="select-input" id="height" name="height" value="512">
-                    <option value="64">64</option> <option value="128">128</option>
-                    <option value="192">192</option> <option value="256">256</option>
-                    <option value="320">320</option> <option value="384">384</option>
-                    <option value="448">448</option> <option value="512" selected>512</option>
-                    <option value="576">576</option> <option value="640">640</option>
-                    <option value="704">704</option> <option value="768">768</option>
-                    <option value="832">832</option> <option value="896">896</option>
-                    <option value="960">960</option> <option value="1024">1024</option>
-                  </select>
-                </div>
-  
-                <div style="padding: 0.25rem;"></div>
-  
-                <div class="config-row">
-                  <label class="input-label" for="sampler">Sampler</label>
-                  <select class="select-input" id="sampler" name="sampler" value="k_lms">
-                    <option value="ddim">DDIM</option>
-                    <option value="plms">PLMS</option>
-                    <option value="k_lms" selected>KLMS (Default)</option>
-                    <option value="k_dpm_2">KDPM_2</option>
-                    <option value="k_dpm_2_a">KDPM_2A</option>
-                    <option value="k_euler">KEULER</option>
-                    <option value="k_euler_a">KEULER_A</option>
-                    <option value="k_heun">KHEUN</option>
-                  </select>
-                </div>
-                
-                <div style="padding: 0.25rem;"></div>
-  
-                <div class="config-row">
-                  <label class="input-label" for="steps">Steps</label>
-                  <input class="number-input" value="50" type="number" id="steps" name="steps">
-                  <label class="input-label" for="cfgscale">CFG/Guidance Scale</label>
-                  <input class="number-input" value="7.5" type="number" id="cfgscale" name="cfgscale" step="any">
+                  <div style="padding: 0.5rem;"></div>
 
-                  <label class="input-label" title="Set to -1 for random seed" for="seed">Seed</label>
-                  <input class="number-input" value="-1" type="number" id="seed" name="seed">
-                  <button class="icon-button reset-seed-button" type="button" id="reset-seed">Random</button>
-                </div>
-  
-                <div style="padding: 0.25rem;"></div>
-  
-                <div class="config-row">
-                  <label class="input-label" for="progress_images">Display in-progress images</label>
-                  <input type="checkbox" name="progress_images" id="progress_images">
-                </div>
-  
-                <div style="padding: 1rem;"></div>
-              </div>
+                  <div class="config-row">
+                    <label class="input-label" for="iterations">Images to Generate</label>
+                    <input class="number-input" v-model="images" type="number" id="iterations" name="iterations">
+                    <label class="input-label" for="steps">Steps</label>
+                    <input class="number-input" v-model="steps" type="number" id="steps" name="steps">
+                    <label class="input-label" for="cfgscale">CFG/Guidance Scale</label>
+                    <input class="number-input" v-model="cfgscale" type="number" id="cfgscale" name="cfgscale" step="any">
+                  </div>
 
-              <div class="image-to-image-options">
-                <div class="section-header">Image to Image Options</div>
-  
-                <div id="img2img">
-                
+                  <div style="padding: 0.5rem;"></div>
+
+                  <div class="config-row">
+                    <label class="input-label" for="sampler">Sampler</label>
+                    <select class="select-input" id="sampler" name="sampler" v-model="sampler">
+                      <option value="ddim">DDIM</option>
+                      <option value="plms">PLMS</option>
+                      <option value="k_lms">KLMS (Default)</option>
+                      <option value="k_dpm_2">KDPM_2</option>
+                      <option value="k_dpm_2_a">KDPM_2A</option>
+                      <option value="k_euler">KEULER</option>
+                      <option value="k_euler_a">KEULER_A</option>
+                      <option value="k_heun">KHEUN</option>
+                    </select>
+                  </div>
+
+                  <div style="padding: 0.5rem;"></div>
+
+                  <div class="config-row">
+                    <label class="input-label" title="Set to multiple of 64" for="width">Width</label>
+                    <select class="select-input" id="width" name="width" v-model="width">
+                      <option value="64">64</option> <option value="128">128</option>
+                      <option value="192">192</option> <option value="256">256</option>
+                      <option value="320">320</option> <option value="384">384</option>
+                      <option value="448">448</option> <option value="512" selected>512</option>
+                      <option value="576">576</option> <option value="640">640</option>
+                      <option value="704">704</option> <option value="768">768</option>
+                      <option value="832">832</option> <option value="896">896</option>
+                      <option value="960">960</option> <option value="1024">1024</option>
+                    </select>
+                    <label class="input-label" title="Set to multiple of 64" for="height">Height</label>
+                    <select class="select-input" id="height" name="height" v-model="height">
+                      <option value="64">64</option> <option value="128">128</option>
+                      <option value="192">192</option> <option value="256">256</option>
+                      <option value="320">320</option> <option value="384">384</option>
+                      <option value="448">448</option> <option value="512" selected>512</option>
+                      <option value="576">576</option> <option value="640">640</option>
+                      <option value="704">704</option> <option value="768">768</option>
+                      <option value="832">832</option> <option value="896">896</option>
+                      <option value="960">960</option> <option value="1024">1024</option>
+                    </select>
+                  </div>
+                  
+                  <div style="padding: 0.5rem;"></div>
+
+                  <div class="config-row">
+                    <label class="input-label" title="Set to -1 for random seed" for="seed">Seed</label>
+                    <input class="number-input" v-model="seed" type="number" id="seed" name="seed">
+                    <button class="icon-button reset-seed-button" type="button" id="reset-seed">&olarr;</button>
+                  </div>
+
+                  <div style="padding: 0.5rem;"></div>
+
+                  <div class="config-row">
+                    <label class="input-label" for="progress_images">Display in-progress images</label>
+                    <input type="checkbox" v-model="displayInProgress" name="progress_images" id="progress_images">
+                  </div>
+
+                  <div style="padding: 1rem;"></div>
+
+                  <div class="section-header">Image to Image Options</div>
+      
+                  <div id="img2img">
+                  
                   <div class="config-row">
                     <label class="input-label" title="Upload an image to use img2img" for="initimg">Initial Image</label>
-                    <input type="file" id="initimg" name="initimg" accept=".jpg, .jpeg, .png">
+                    <input type="file" @change="handleFileChange($event, index)" id="initimg" name="initimg" accept=".jpg, .jpeg, .png">
                   </div>
-  
-                  <div style="padding: 0.25rem;"></div>
+                  <img class="initialImg" :src="initialImgUrl"/>
 
                   <div class="config-row">
                     <label class="input-label" for="strength">Image To Image Strength</label>
-                    <input class="number-input" value="0.75" type="number" id="strength" name="strength" step="0.01" min="0" max="1">
+                    <input class="number-input" v-model="img2img_strength" type="number" id="strength" name="strength" step="0.01" min="0" max="1">
                   </div>
 
-                  <div style="padding: 0.25rem;"></div>
-  
                   <div class="config-row">
                     <label class="input-label" title="Rescale image to fit within requested width and height" for="fit">Fit Image Dimensions</label>
-                    <input type="checkbox" id="fit" name="fit" checked>
+                    <input type="checkbox" id="fit" name="fit" v-model="img2img_fitdimension">
                   </div>
-  
-                </div>
+
               </div>
-    </div>
+        </div>
     
           <div id="gfpgan">
             <label title="Strength of the gfpgan (face fixing) algorithm." for="gfpgan_strength">GPFGAN Strength (0 to disable):</label>
@@ -147,12 +145,11 @@
         <div class="progress-section" id="progress-section">
 
           <div class="progress-row">
-            <progress class="progress-bar" id="progress-bar" value="0" max="1"></progress>
+            <div class="">{{progress/steps}}</div>
             <span class="progress-cancel" id="cancel-button" title="Cancel">Cancel</span>
           </div>
-
-          <img id="progress-image" src='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"/>'></img>
           
+          <img id="progress-image" :src="progressImageSrc"></img>
           <div id="scaling-inprocess-message">
             <i><span>Postprocessing...</span><span id="processing_cnt">1/3</span></i>
           </div>
@@ -161,9 +158,220 @@
       </main>
 
       <div class="results-section" id="results">
+        <div id="no-results-message">
+          Nothing here yet!
+          <div class="results-display">
+            <div class="img-wrapper" v-for="x in results">
+              <img class="img-gen" :src="x.src" />
+            </div>"
+          </div>
+        </div>
       </div>
 
     </div>
 
   </body>
 </html>
+
+<script>
+  function toBase64(file) {
+    return new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.readAsDataURL(file);
+        r.onload = () => resolve(r.result);
+        r.onerror = (error) => reject(error);
+    });
+  }
+
+  var app = new Vue({
+  el: '#app',
+    data: {
+      prompt: "",
+      images: 5,
+      steps: 50,
+      cfgscale: 7,
+      sampler: 'k_lms',
+      width: 512,
+      height: 512,
+      seed: -1,
+      displayInProgress: false,
+      img2img_initial: { name: '' },
+      img2img_strength: 0.75,
+      img2img_fitdimension: true,
+      progressImageSrc: '',
+      initialImgUrl: '',
+
+      gfpgan_strength: 0.8,
+      upscale_level: "",
+      upscale_strength: 0.75,
+
+      progress:0,
+      results: []
+    },
+
+    methods: {
+      appendOutput(src, seed, config) {
+        this.results.unshift({src,seed,config})
+      },
+      handleFileChange(evt, index) {
+        const file = evt.target.files[0];
+        this.initialImgUrl = URL.createObjectURL(file);
+        this.img2img_initial = file;
+        console.log(evt);
+      },
+      async generateSubmit(e) {
+        e.preventDefault();
+        const prompt = this.prompt;
+
+        // Convert file data to base64
+        
+
+        let formy = {
+          prompt: this.prompt,
+          iterations: this.images,
+          steps: this.steps,
+          cfgscale: this.cfgscale,
+          sampler: this.sampler,
+          width: this.width,
+          height: this.height,
+          seed: this.seed,
+          progress_images: this.displayInProgress,
+
+          strength: this.img2img_strength,
+          fit: this.img2img_fitdimension,
+          initimg: this.img2img_initial,
+
+          gfpgan_strength: this.gfpgan_strength,
+          upscale_level: this.upscale_level,
+          upscale_strength: this.upscale_strength
+
+        }
+
+        // let formData = Object.fromEntries(new FormData(formy));
+        
+        formy.initimg = formy.initimg.name !== '' ? await toBase64(formy.initimg) : null;
+
+        let strength = formy.strength;
+        let totalSteps = formy.initimg ? Math.floor(strength * formy.steps) : formy.steps;
+
+        this.progress = 0
+
+        // Post as JSON, using Fetch streaming to get results
+        fetch('#',{
+            method: 'POST',
+            body: JSON.stringify(formy),
+        }).then(async (response) => {
+            const reader = response.body.getReader();
+
+            let noOutputs = true;
+            while (true) {
+                let {value, done} = await reader.read();
+                value = new TextDecoder().decode(value);
+                if (done) {
+                    // progressSectionEle.style.display = 'none';
+                    this.progress = 0;
+                    break;
+                }
+
+                for (let event of value.split('\n').filter(e => e !== '')) {
+                    const data = JSON.parse(event);
+
+                    if (data.event === 'result') {
+                        noOutputs = false;
+                        this.appendOutput(data.url, data.seed, data.config);
+                        this.progress = 0;                      
+                    } else if (data.event === 'upscaling-started') {
+                        document.getElementById("processing_cnt").textContent=data.processed_file_cnt;
+                        // document.getElementById("scaling-inprocess-message").style.display = "block";
+                    } else if (data.event === 'upscaling-done') {
+                        // document.getElementById("scaling-inprocess-message").style.display = "none";
+                    } else if (data.event === 'step') {
+                        this.progress = data.step;                      
+                        if (data.url) {
+                            this.progressImageSrc.src = data.url;
+                        }
+                    } else if (data.event === 'canceled') {
+                        // avoid alerting as if this were an error case
+                        noOutputs = false;
+                    }
+                }
+            }
+
+            // Re-enable form, remove no-results-message
+            // form.querySelector('fieldset').removeAttribute('disabled');          
+            // document.querySelector("#prompt").value = prompt;
+            this.progress = 0;
+            
+
+            if (noOutputs) {
+                alert("Error occurred while generating.");
+            }
+        });
+
+            // Disable form while generating
+            // form.querySelector('fieldset').setAttribute('disabled','');
+            // document.querySelector("#prompt").value = `Generating: "${prompt}"`;
+        }
+    }
+
+  })
+
+
+
+  function saveFields(form) {
+      for (const [k, v] of new FormData(form)) {
+          if (typeof v !== 'object') { // Don't save 'file' type
+              localStorage.setItem(k, v);
+          }
+      }
+  }
+
+  function loadFields(form) {
+      for (const [k, v] of new FormData(form)) {
+          const item = localStorage.getItem(k);
+          if (item != null) {
+              form.querySelector(`*[name=${k}]`).value = item;
+          }
+      }
+  }
+
+  function clearFields(form) {
+      localStorage.clear();
+      let prompt = form.prompt.value;
+      form.reset();
+      form.prompt.value = prompt;
+  }
+
+  const BLANK_IMAGE_URL = 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg"/>';
+
+  window.onload = () => {
+      // document.querySelector("#generate-form").addEventListener('submit', (e) => {
+      //     e.preventDefault();
+      //     const form = e.target;
+
+      //     generateSubmit(form);
+      // });
+      // document.querySelector("#generate-form").addEventListener('change', (e) => {
+      //     saveFields(e.target.form);
+      // });
+      // document.querySelector("#reset-seed").addEventListener('click', (e) => {
+      //     document.querySelector("#seed").value = -1;
+      //     saveFields(e.target.form);
+      // });
+      // document.querySelector("#reset-all").addEventListener('click', (e) => {
+      //     clearFields(e.target.form);
+      // });
+      // loadFields(document.querySelector("#generate-form"));
+
+      // document.querySelector('#cancel-button').addEventListener('click', () => {
+      //     fetch('/cancel').catch(e => {
+      //         console.error(e);
+      //     });
+      // });
+
+      // if (!config.gfpgan_model_exists) {
+      //     document.querySelector("#gfpgan").style.display = 'none';
+      // }
+  };
+
+</script>

@@ -401,3 +401,8 @@ input[type="checkbox"]:checked::before {
       align-items: center;
     }
 }
+
+.initialImg {
+    width: 100px;
+    height: auto;
+}
