@@ -171,9 +171,9 @@
   
       </main>
 
-      <div class="results-section" id="results">
-          <div class="results-display">
-            <div class="img-wrapper" v-for="x in results">
+      <div id="panzoom-element-whole" class="results-section" id="results">
+          <div id="panzoom-element" class="results-display">
+            <div id="" class="img-wrapper" v-for="x in results">
               <img class="img-gen" :src="x.src" />
             </div>
           </div>
@@ -385,5 +385,23 @@
       //     document.querySelector("#gfpgan").style.display = 'none';
       // }
   };
+  
 
+</script>
+
+<script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
+
+<script>
+const elem = document.getElementById('panzoom-element')
+const panzoom = Panzoom(elem, {
+  maxScale: 5
+})
+const parent = elem.parentElement
+panzoom.pan(10, 10)
+panzoom.zoom(1, { animate: true, startScale: 0.5, contain: 'inside'})
+
+elem.parentElement.addEventListener('wheel', panzoom.zoomWithWheel)
+parent.addEventListener('wheel', function(event) {
+  panzoom.zoomWithWheel(event)
+})
 </script>
