@@ -251,7 +251,7 @@ input[type="checkbox"]:checked::before {
     width: calc(100% - 40px);
     max-width: 726px;
     flex-shrink: 1;
-    margin: 20px;
+    margin: 0 20px 20px 20px;
 }
 
 .layout {
@@ -477,4 +477,9 @@ input[type="checkbox"]:checked::before {
 .logos > svg {
     height: 4rem;
     width: 8rem;
+}
+
+.top-bar {
+    display: flex;
+    align-items: center;
 }
