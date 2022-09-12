@@ -14,8 +14,18 @@
     <div id="app" class="layout">
       <main class="main" id="search">
         <h2 class="header" id="header">Stable Diffusion Dream Server</h2>
-  
-        <div style="padding: 1rem;"></div>
+        <div class="subheader" id="">by Fero and Robo @ robolab.io</div>
+        <div class="logos">
+          <svg width="376" height="140" viewBox="0 0 376 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 63.7198V43.3086H97.324V63.7198H63.8028V75.888L50 63.7198Z" fill="white"/>
+            <path d="M85.4931 64.8975H64.9861V112H85.4931L97.7185 98.2619H85.4931V64.8975Z" fill="white"/>
+            <path d="M98.5069 42.1308H86.2815L98.9012 28H119.014V75.4952H98.5069V42.1308Z" fill="white"/>
+            <path d="M134 76.6726L120.197 64.5044V76.6726H86.676V96.6912H134V76.6726Z" fill="white"/>
+            <path d="M182 46V94" stroke="white"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M239 57.5034V102.25H317V57.5034H305.885V46L283.655 46.1828V57.5034H272.345V46.1828L250.115 46.3657V57.5034H239ZM250.213 67.4153H272.637V78.824H250.213V67.4153ZM306.469 67.4153H284.045V78.824H306.469V67.4153Z" fill="white"/>
+            </svg>            
+        </div>
+        <!-- <div style="padding: 1rem;"></div> -->
 
         <form id="generate-form" method="post" action="#">
         <div class="text-to-image-form" id="txt2img">
@@ -172,7 +182,7 @@
       </main>
 
       <div id="panzoom-element-whole" class="results-section" id="results">
-          <div id="panzoom-element" class="results-display">
+          <div id="panzoom-element" class="results-display" style="--results-display-column-amount: 2;">
             <div id="" class="img-wrapper" v-for="x in results">
               <img class="img-gen" :src="x.src" />
             </div>
@@ -189,6 +199,11 @@
 
             <div id="resetZoomButton" class="control-button">
               <svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" fill="#000000" viewBox="0 0 256 256"><rect width="256" height="256" stroke="none" fill="none"></rect><line x1="128" y1="80" x2="128" y2="128" fill="none" stroke="" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></line><line x1="169.6" y1="152" x2="128" y2="128" fill="none" stroke="" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></line><polyline points="184.2 99.7 224.2 99.7 224.2 59.7" fill="none" stroke="" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></polyline><path d="M190.2,190.2a88,88,0,1,1,0-124.4l34,33.9" fill="none" stroke="" stroke-linecap="round" stroke-linejoin="round" stroke-width="12"></path></svg>
+            </div>
+
+            <div class="slider-control">
+              <label class="input-label" title="How many columns to display in the canvas" for="columnInput">Columnns</label>
+              <input id="columnInput" class="range-input" type="range" min="2" max="5" step="1" value="1">
             </div>
           </div>
         </div>
@@ -421,5 +436,12 @@ resetZoomButton.addEventListener('click', panzoom.reset)
 elem.parentElement.addEventListener('wheel', panzoom.zoomWithWheel)
 parent.addEventListener('wheel', function(event) {
   panzoom.zoomWithWheel(event)
+})
+
+
+const resultDisplay = document.getElementById('panzoom-element')
+
+columnInput.addEventListener('input', (event) => {
+  resultDisplay.style.setProperty('--results-display-column-amount', event.target.valueAsNumber)
 })
 </script>

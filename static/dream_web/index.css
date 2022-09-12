@@ -347,7 +347,7 @@ input[type="checkbox"]:checked::before {
 
 .results-display {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(var(--results-display-column-amount), 1fr);
     grid-template-rows: repeat(8, 1fr);
     grid-gap: 15px;
 
@@ -459,4 +459,22 @@ input[type="checkbox"]:checked::before {
 
 .control-button:hover {
     background-color: #222329;
+}
+
+.slider-control {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; 
+    align-items: center;
+    gap: 1rem;
+}
+
+.logos {
+    height: 4rem;
+    display: flex;
+}
+
+.logos > svg {
+    height: 4rem;
+    width: 8rem;
 }
