@@ -188,7 +188,7 @@
       </main>
 
       <div id="panzoom-element-whole" class="results-section" id="results">
-          <div id="panzoom-element" class="results-display" style="--results-display-column-amount: 2;">
+          <!-- <div id="panzoom-element" class="results-display" style="--results-display-column-amount: 2;"> -->
             <div id="" class="img-wrapper" v-for="x in results">
               <img class="img-gen" :src="x.src" />
             </div>
@@ -208,7 +208,7 @@
             </div>
 
             <div class="slider-control">
-              <label class="input-label" title="How many columns to display in the canvas" for="columnInput">Columnns</label>
+              <label class="input-label" title="How many columns to display in the canvas" for="columnInput">Columns</label>
               <input id="columnInput" class="range-input" type="range" min="2" max="5" step="1" value="1">
             </div>
           </div>
@@ -423,7 +423,7 @@
   
 
 </script>
-
+<!-- 
 <script src="https://unpkg.com/@panzoom/panzoom@4.5.1/dist/panzoom.min.js"></script>
 
 <script>
@@ -450,4 +450,4 @@ const resultDisplay = document.getElementById('panzoom-element')
 columnInput.addEventListener('input', (event) => {
   resultDisplay.style.setProperty('--results-display-column-amount', event.target.valueAsNumber)
 })
-</script>
+</script> -->

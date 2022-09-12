@@ -83,16 +83,17 @@ input[type="number"] {
     width: 150px;
 }
 hr {
-//    width: 200px;
+   width: 200px;
 }
 label {
     white-space: nowrap;
 }
 #progress-section {
     display: none;
+    display: block;
 }
 #progress-image {
-    display: none;
+    /* display: none; */
     border-radius: 5px;
 }
 
@@ -339,9 +340,12 @@ input[type="checkbox"]:checked::before {
 .results-section {
     height: 100%;
     width: 100%;
-    
     background: linear-gradient(90deg,#111216 15px,transparent 1%) 50%,linear-gradient(#111216 15px,transparent 1%) 50%,hsla(0,0%,100%,.32);
     background-size: auto, auto, auto;
+    display: flex;
+    align-content: baseline;
+    flex-wrap: wrap;
+    overflow-y: scroll;
     background-size: 16px 16px;
 }
 
@@ -368,6 +372,14 @@ input[type="checkbox"]:checked::before {
     width: 100% !important;
     height: auto !important;
 } */
+
+.img-wrapper {
+    padding: 0.46em;
+}
+
+img.img-gen {
+    width: 181px;
+}
 
 .progress-row {
     display: flex;
