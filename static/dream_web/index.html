@@ -38,7 +38,7 @@
 
                 <fieldset class="prompting-input" id="fieldset-search">
                   <textarea class="prompting-text-input" type="text" v-model="prompt" id="prompt" name="prompt"></textarea>
-                  <button type="submit" id="submit" value="Generate" @click="generateSubmit">Generate</button>
+                  <button class="button generate-button" type="submit" id="submit" value="Generate" @click="generateSubmit">Generate</button>
                 </fieldset>
 
                 <fieldset class="options" id="fieldset-config">
@@ -46,7 +46,7 @@
                   <div class="section-header">
                     Text to Image Options 
                     <div class="config-row">
-                      <button class="danger-button" type="button" id="reset-all">Reset</button>
+                      <button class="button danger-button" type="button" id="reset-all">Reset</button>
                     </div>
                   </div>
 
@@ -109,7 +109,7 @@
                   <div class="config-row">
                     <label class="input-label" title="Set to -1 for random seed" for="seed">Seed</label>
                     <input class="number-input" v-model="seed" type="number" id="seed" name="seed">
-                    <button class="icon-button reset-seed-button" type="button" id="reset-seed">&olarr;</button>
+                    <button class="button primary-button" type="button" id="reset-seed">&olarr;</button>
                   </div>
 
                   <div style="padding: 0.5rem;"></div>
@@ -176,7 +176,7 @@
 
           <div class="progress-row">
             <div class="">{{progress/steps}}</div>
-            <span class="progress-cancel" id="cancel-button" title="Cancel">Cancel</span>
+            <span class="button danger-button" id="cancel-button" title="Cancel">Cancel</span>
           </div>
           
           <img id="progress-image" :src="progressImageSrc"></img>
