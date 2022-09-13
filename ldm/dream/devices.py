@@ -1,6 +1,4 @@
 import torch
-from torch import autocast
-from contextlib import contextmanager, nullcontext
 
 def choose_torch_device() -> str:
     '''Convenience routine for guessing which GPU device to run model on'''
@@ -10,11 +8,10 @@ def choose_torch_device() -> str:
         return 'mps'
     return 'cpu'
 
-def choose_autocast_device(device):
+def choose_autocast_device(device) -> str:
     '''Returns an autocast compatible device from a torch device'''
     device_type = device.type # this returns 'mps' on M1
     # autocast only supports cuda or cpu
-    if device_type in ('cuda','cpu'):
-        return device_type,autocast
-    else:
-        return 'cpu',nullcontext
+    if device_type not in ('cuda','cpu'):
+        return 'cpu'
+    return device_type

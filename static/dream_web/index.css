@@ -55,30 +55,12 @@ table {
 }
 fieldset {
     border: none;
-    line-height: 2.2em;
-}
-select, input {
-    margin-right: 10px;
-    padding: 2px;
-}
-input[type=submit] {
-    background-color: #666;
-    color: white;
-}
-input[type=checkbox] {
-    margin-right: 0px;
-    width: 20px;
-    height: 20px;
-    vertical-align: middle;
-}
-input#seed {
-    margin-right: 0px;
 }
 
 #fieldset-search {
     display: flex;
 }
-#scaling-inprocess-message {
+#scaling-inprocess-message{
     font-weight: bold;
     font-style: italic;
     display: none;
@@ -90,16 +72,6 @@ input#seed {
 
 #results img {
     border-radius: 5px;
-}
-#results figcaption {
-    font-size: 0.8em;
-    padding: 3px;
-    color: #888;
-    cursor: pointer;
-}
-#results img {
-    border-radius: 5px;
-    object-fit: cover;
 }
 #fieldset-config {
     line-height:2em;
