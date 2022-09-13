@@ -50,69 +50,78 @@
                     </div>
                   </div>
 
-                  <div style="padding: 0.5rem;"></div>
-
                   <div class="config-row">
-                    <label class="input-label" for="iterations">Images to Generate</label>
+                    <div class="select-pill">
+                    <label class="input-label pill-label" for="iterations">Images to Generate</label>
                     <input class="number-input" v-model="images" type="number" id="iterations" name="iterations">
-                    <label class="input-label" for="steps">Steps</label>
+                    </div>
+
+                    <div class="select-pill">
+                    <label class="input-label pill-label" for="steps">Steps</label>
                     <input class="number-input" v-model="steps" type="number" id="steps" name="steps">
-                    <label class="input-label" for="cfgscale">CFG/Guidance Scale</label>
+                    </div>
+
+                    <div class="select-pill">
+                    <label class="input-label pill-label" for="cfgscale">CFG/Guidance Scale</label>
                     <input class="number-input" v-model="cfgscale" type="number" id="cfgscale" name="cfgscale" step="any">
+                    </div>
                   </div>
 
-                  <div style="padding: 0.5rem;"></div>
 
                   <div class="config-row">
-                    <label class="input-label" for="sampler">Sampler</label>
-                    <select class="select-input" id="sampler" name="sampler" v-model="sampler">
-                      <option value="ddim">DDIM</option>
-                      <option value="plms">PLMS</option>
-                      <option value="k_lms">KLMS (Default)</option>
-                      <option value="k_dpm_2">KDPM_2</option>
-                      <option value="k_dpm_2_a">KDPM_2A</option>
-                      <option value="k_euler">KEULER</option>
-                      <option value="k_euler_a">KEULER_A</option>
-                      <option value="k_heun">KHEUN</option>
-                    </select>
+                    <div class="select-pill">
+                      <label class="input-label pill-label" for="sampler">Sampler</label>
+                      <select class="select-input" id="sampler" name="sampler" v-model="sampler">
+                        <option value="ddim">DDIM</option>
+                        <option value="plms">PLMS</option>
+                        <option value="k_lms">KLMS (Default)</option>
+                        <option value="k_dpm_2">KDPM_2</option>
+                        <option value="k_dpm_2_a">KDPM_2A</option>
+                        <option value="k_euler">KEULER</option>
+                        <option value="k_euler_a">KEULER_A</option>
+                        <option value="k_heun">KHEUN</option>
+                      </select>
+                    </div>
                   </div>
 
-                  <div style="padding: 0.5rem;"></div>
 
                   <div class="config-row">
-                    <label class="input-label" title="Set to multiple of 64" for="width">Width</label>
-                    <select class="select-input" id="width" name="width" v-model="width">
-                      <option value="64">64</option> <option value="128">128</option>
-                      <option value="192">192</option> <option value="256">256</option>
-                      <option value="320">320</option> <option value="384">384</option>
-                      <option value="448">448</option> <option value="512" selected>512</option>
-                      <option value="576">576</option> <option value="640">640</option>
-                      <option value="704">704</option> <option value="768">768</option>
-                      <option value="832">832</option> <option value="896">896</option>
-                      <option value="960">960</option> <option value="1024">1024</option>
-                    </select>
-                    <label class="input-label" title="Set to multiple of 64" for="height">Height</label>
-                    <select class="select-input" id="height" name="height" v-model="height">
-                      <option value="64">64</option> <option value="128">128</option>
-                      <option value="192">192</option> <option value="256">256</option>
-                      <option value="320">320</option> <option value="384">384</option>
-                      <option value="448">448</option> <option value="512" selected>512</option>
-                      <option value="576">576</option> <option value="640">640</option>
-                      <option value="704">704</option> <option value="768">768</option>
-                      <option value="832">832</option> <option value="896">896</option>
-                      <option value="960">960</option> <option value="1024">1024</option>
-                    </select>
+                    <div class="select-pill">
+                      <label class="input-label pill-label" title="Set to multiple of 64" for="width">Width</label>
+                      <select class="select-input" id="width" name="width" v-model="width">
+                        <option value="64">64</option> <option value="128">128</option>
+                        <option value="192">192</option> <option value="256">256</option>
+                        <option value="320">320</option> <option value="384">384</option>
+                        <option value="448">448</option> <option value="512" selected>512</option>
+                        <option value="576">576</option> <option value="640">640</option>
+                        <option value="704">704</option> <option value="768">768</option>
+                        <option value="832">832</option> <option value="896">896</option>
+                        <option value="960">960</option> <option value="1024">1024</option>
+                      </select>
+                    </div>
+
+                    <div class="select-pill">
+                      <label class="input-label pill-label" title="Set to multiple of 64" for="height">Height</label>
+                      <select class="select-input" id="height" name="height" v-model="height">
+                        <option value="64">64</option> <option value="128">128</option>
+                        <option value="192">192</option> <option value="256">256</option>
+                        <option value="320">320</option> <option value="384">384</option>
+                        <option value="448">448</option> <option value="512" selected>512</option>
+                        <option value="576">576</option> <option value="640">640</option>
+                        <option value="704">704</option> <option value="768">768</option>
+                        <option value="832">832</option> <option value="896">896</option>
+                        <option value="960">960</option> <option value="1024">1024</option>
+                      </select>
+                    </div>
                   </div>
                   
-                  <div style="padding: 0.5rem;"></div>
 
                   <div class="config-row">
-                    <label class="input-label" title="Set to -1 for random seed" for="seed">Seed</label>
-                    <input class="number-input" v-model="seed" type="number" id="seed" name="seed">
-                    <button class="button primary-button" type="button" id="reset-seed">&olarr;</button>
+                    <div style="flex-direction: column; width: 100%;" class="select-pill">
+                    <label style="display: flex; flex-direction: row" class="input-label pill-label" title="Set to -1 for random seed" for="seed">Seed                     <button style="margin-left: auto !important; width: 36px;" class="button primary-button" type="button" id="reset-seed">&olarr;</button> </label>
+                    <input style="width: 100%;" class="number-input" v-model="seed" type="number" id="seed" name="seed">
+                    </div>
                   </div>
-
-                  <div style="padding: 0.5rem;"></div>
 
                   <div class="config-row">
                     <label class="input-label" for="progress_images">Display in-progress images</label>
@@ -123,7 +132,7 @@
 
                   <div class="section-header">Image to Image Options</div>
       
-                  <div id="img2img">
+                  <div class="img2img-options" id="img2img">
                   
                   <div class="config-row">
                     <label class="input-label" title="Upload an image to use img2img" for="initimg">Initial Image</label>
@@ -132,8 +141,10 @@
                   <img class="initialImg" :src="initialImgUrl"/>
 
                   <div class="config-row">
-                    <label class="input-label" for="strength">Image To Image Strength</label>
+                    <div class="select-pill">
+                    <label class="input-label pill-label" for="strength">Image To Image Strength</label>
                     <input class="number-input" v-model="img2img_strength" type="number" id="strength" name="strength" step="0.01" min="0" max="1">
+                    </div>
                   </div>
 
                   <div class="config-row">
@@ -145,24 +156,29 @@
 
                   <div class="section-header">Upscaling Options</div>
 
-                  <div id="gfpgan">
+                  <div class="upscaling-options" id="gfpgan">
 
                     <div class="config-row">
-                      <label class="input-label" title="Strength of the gfpgan (face fixing) algorithm." for="gfpgan_strength">GPFGAN Strength (0 to disable)</label>
+                      <div class="select-pill">
+                      <label class="input-label pill-label" title="Strength of the gfpgan (face fixing) algorithm." for="gfpgan_strength">GPFGAN Strength (0 to disable)</label>
                       <input class="number-input" value="0.8" min="0" max="1" type="number" id="gfpgan_strength" name="gfpgan_strength" step="0.05">
+                      </div>
                     </div>
 
                     <div class="config-row">
-
-                      <label class="input-label" title="Upscaling to perform using ESRGAN." for="upscale_level">Upscaling Level</label>
+                      <div class="select-pill">
+                      <label class="input-label pill-label" title="Upscaling to perform using ESRGAN." for="upscale_level">Upscaling Level</label>
                       <select class="select-input" id="upscale_level" name="upscale_level" value="">
                         <option value="" selected>None</option>
                         <option value="2">2x</option>
                         <option value="4">4x</option>
                       </select>
+                      </div>
 
-                      <label class="input-label" title="Strength of the esrgan (upscaling) algorithm." for="upscale_strength">Upscale Strength</label>
+                      <div class="select-pill">
+                      <label class="input-label pill-label" title="Strength of the esrgan (upscaling) algorithm." for="upscale_strength">Upscale Strength</label>
                       <input class="number-input" value="0.75" min="0" max="1" type="number" id="upscale_strength" name="upscale_strength" step="0.05">
+                      </div>
                     </div>
 
                   </div>
